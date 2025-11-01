@@ -13,9 +13,8 @@ export async function POST(request) {
     }
 
     // ---- Validate env
-    const { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env;
+    const { RESEND_API_KEY } = process.env;
     if (!RESEND_API_KEY) return NextResponse.json({ ok: false, error: "Missing RESEND_API_KEY" }, { status: 500 });
-    if (!CONTACT_TO_EMAIL) return NextResponse.json({ ok: false, error: "Missing CONTACT_TO_EMAIL" }, { status: 500 });
 
     // Optional dry run for testing without sending
     if (process.env.DRY_RUN === "1") {
@@ -32,8 +31,8 @@ export async function POST(request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: CONTACT_FROM_EMAIL || "onboarding@resend.dev",
-        to: [CONTACT_TO_EMAIL],
+        from: "onboarding@resend.dev",
+        to: [email], // Send to the user's email address
         reply_to: email,
         subject,
         html: `

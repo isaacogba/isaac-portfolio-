@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const stats = [
   { num: 2, text: "Years of Experience" },
-  { num: 5, text: "Projects Completed" },
+  { num: 20, text: "Projects Completed" },
   { num: 8, text: "Technologies Mastered" },
   { num: 200, text: "Code Commits" },
 ];

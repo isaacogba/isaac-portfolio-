@@ -15,16 +15,16 @@ const Header = () => {
           </h1>
         </Link>
 
-        {/* Desktop Nav & Hire Me button (visible ≥ xl) */}
-        <div className="flex items-center gap-7">
+        {/* Desktop Nav & WhatsApp button (visible ≥ md) */}
+        <div className="hidden md:flex items-center gap-7">
           <Nav />
-          <Link href="#contact" aria-label="Hire me">
-            <Button className="uppercase">Hire me</Button>
-          </Link>
+          <a href="https://wa.me/2348139958224" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
+            <Button className="uppercase">WhatsApp</Button>
+          </a>
         </div>
 
-        {/* Mobile Nav (visible < xl) */}
-        <div className="xl:hidden">
+        {/* Mobile Nav (visible < md) */}
+        <div className="md:hidden">
           <MobileNav />
         </div>
       </div>

@@ -191,18 +191,75 @@ export default function Resume() {
         {/* =========================
            TABS SECTION
            ========================= */}
-        <Tabs defaultValue="experience" className="flex flex-col xl:flex-row gap-[60px]">
+        <Tabs defaultValue="projects" className="flex flex-col xl:flex-row gap-[60px]">
           {/* LEFT: tab list */}
           <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-2 sticky top-20">
+            <TabsTrigger value="projects">Projects</TabsTrigger>
             <TabsTrigger value="experience">Experience</TabsTrigger>
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="about">About me</TabsTrigger>
-            <TabsTrigger value="projects">Projects</TabsTrigger>
           </TabsList>
 
           {/* RIGHT: content */}
           <div className="min-h-[70vh] w-full">
+
+             {/* PROJECTS */}
+            <TabsContent value="projects">
+              <h3 className="text-xl font-semibold mb-2">{projects.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4">{projects.description}</p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {projects.items.map((p, i) => (
+                  <div key={i} className="group rounded-lg border overflow-hidden flex flex-col">
+                    {/* Image */}
+                    <div className="relative w-full h-40 md:h-44 lg:h-48">
+                      <Image
+                        src={p.image || "/projects/placeholder.jpg"}
+                        alt={p.alt || p.name}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                        sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                        priority={i === 0}
+                      />
+                    </div>
+
+                    {/* Body */}
+                    <div className="p-4 flex flex-col gap-3">
+                      <div className="font-medium">{p.name}</div>
+
+                      {/* Stack chips */}
+                      <div className="flex flex-wrap gap-2">
+                        {p.stack.map((t, k) => (
+                          <span
+                            key={k}
+                            className="rounded-full border px-2 py-1 text-xs text-white/80"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <p className="text-sm text-white/80">{p.summary}</p>
+
+                      {/* Links */}
+                      <div className="mt-auto flex gap-3">
+                        {p.links.map((lnk, j) => (
+                          <a
+                            key={j}
+                            href={lnk.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-accent hover:underline text-sm"
+                          >
+                            {lnk.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
 
             {/* EXPERIENCE */}
             <TabsContent value="experience">
@@ -281,62 +338,7 @@ export default function Resume() {
               </div>
             </TabsContent>
 
-            {/* PROJECTS */}
-            <TabsContent value="projects">
-              <h3 className="text-xl font-semibold mb-2">{projects.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4">{projects.description}</p>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {projects.items.map((p, i) => (
-                  <div key={i} className="group rounded-lg border overflow-hidden flex flex-col">
-                    {/* Image */}
-                    <div className="relative w-full h-40 md:h-44 lg:h-48">
-                      <Image
-                        src={p.image || "/projects/placeholder.jpg"}
-                        alt={p.alt || p.name}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                        sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                        priority={i === 0}
-                      />
-                    </div>
-
-                    {/* Body */}
-                    <div className="p-4 flex flex-col gap-3">
-                      <div className="font-medium">{p.name}</div>
-
-                      {/* Stack chips */}
-                      <div className="flex flex-wrap gap-2">
-                        {p.stack.map((t, k) => (
-                          <span
-                            key={k}
-                            className="rounded-full border px-2 py-1 text-xs text-white/80"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      <p className="text-sm text-white/80">{p.summary}</p>
-
-                      {/* Links */}
-                      <div className="mt-auto flex gap-3">
-                        {p.links.map((lnk, j) => (
-                          <a
-                            key={j}
-                            href={lnk.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-accent hover:underline text-sm"
-                          >
-                            {lnk.label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
+           
           </div>
         </Tabs>
       </div>
