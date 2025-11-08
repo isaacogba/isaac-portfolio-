@@ -1,274 +1,172 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaTiktok, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-
-// ====== STATIC INFO ======
-const info = [
-  { icon: <FaPhoneAlt />, title: "Phone", description: "‪(+234) 813 995 8224‬" },
-  { icon: <FaEnvelope />, title: "Email", description: "ogbaisaac1@email.com" },
+// ====== CONTACT INFO ======
+const contactInfo = [
+  { 
+    icon: <FaPhoneAlt />, 
+    title: "Phone", 
+    description: "+234 813 995 8224",
+    link: "tel:+2348139958224"
+  },
+  { 
+    icon: <FaEnvelope />, 
+    title: "Email", 
+    description: "ogbaisaac1@gmail.com",
+    link: "mailto:ogbaisaac1@gmail.com"
+  },
   {
     icon: <FaMapMarkerAlt />,
-    title: "Address",
-    description: "19 Market Street, Ijeshatedo, Surulere, Lagos, Nigeria",
+    title: "Location",
+    description: "Lagos, Nigeria",
+    link: null
+  },
+];
+
+// ====== SOCIAL LINKS ======
+const socialLinks = [
+  {
+    icon: <FaWhatsapp />,
+    name: "WhatsApp",
+    link: "https://wa.me/2348139958224",
+    color: "hover:bg-[#25D366]"
+  },
+  {
+    icon: <FaTiktok />,
+    name: "TikTok",
+    link: "https://vm.tiktok.com/ZSHc769hQf6yj-OMj99/",
+    color: "hover:bg-[#000000]"
+  },
+  {
+    icon: <FaInstagram />,
+    name: "Instagram",
+    link: "https://www.instagram.com/isaacall.dev/",
+    color: "hover:bg-[#E4405F]"
+  },
+  {
+    icon: <FaFacebook />,
+    name: "Facebook",
+    link: "https://www.facebook.com/profile.php?id=100008487427730",
+    color: "hover:bg-[#1877F2]"
+  },
+  {
+    icon: <FaXTwitter />,
+    name: "X (Twitter)",
+    link: "https://x.com/IsaacO17353",
+    color: "hover:bg-[#000000]"
   },
 ];
 
 const Contact = () => {
-  const [service, setService] = useState("");
-
-  // toast
-  const [toastOpen, setToastOpen] = useState(false);
-  const [toastDesc, setToastDesc] = useState("");
-
-  // loading state for API call
- const [loading, setLoading] = useState(false);
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-
-  const form = new FormData(e.currentTarget);
-  form.set("service", service);
-  const data = Object.fromEntries(form.entries());
-
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    let payload = null;
-    try { payload = await res.json(); } catch {}
-
-    if (!res.ok) {
-      const msg = payload?.error || `HTTP ${res.status}`;
-      throw new Error(msg);
-    }
-
-    setToastDesc("Thanks! Your message is in my inbox. I’ll reply within 24 hours.");
-    setToastOpen(true);
-    e.currentTarget.reset();
-    setService("");
-  } catch (err) {
-    console.error("Contact submit error:", err);
-    setToastDesc(String(err.message || "Couldn’t send right now."));
-    setToastOpen(true);
-  } finally {
-    setLoading(false);
-  }
-};
-
-
-  // helpers to make contact info clickable
-  const sanitizeTel = (raw) => raw.replace(/[^\d+]/g, "");
-  const ContactValue = ({ title, value }) => {
-    if (/email/i.test(title) || value.includes("@")) {
-      return (
-        <a href={`mailto:${value}`} className="hover:underline break-all">
-          {value}
-        </a>
-      );
-    }
-    if (/phone/i.test(title)) {
-      const tel = sanitizeTel(value);
-      return (
-        <a href={`tel:${tel}`} className="hover:underline">
-          {value}
-        </a>
-      );
-    }
-    return <span>{value}</span>;
-  };
-
-  const InfoList = useMemo(
-    () =>
-      info.map((item, i) => (
-        <li key={i} className="flex items-center gap-6">
-          <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-md flex items-center justify-center">
-            <div className="text-[28px]">{item.icon}</div>
-          </div>
-          <div className="flex-1">
-            <p className="text-white/60">{item.title}</p>
-            <h3 className="text-xl">
-              <ContactValue title={item.title} value={item.description} />
-            </h3>
-          </div>
-        </li>
-      )),
-    []
-  );
-
   return (
     <motion.section
       id="contact"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.35, ease: "easeIn" } }}
-      className="py-6 min-h-screen scroll-mt-24 relative"
+      animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.4, ease: "easeIn" } }}
+      className="py-12 sm:py-16 min-h-screen scroll-mt-24 flex items-center"
     >
-      {/* Toast */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: toastOpen ? 1 : 0, y: toastOpen ? 0 : -10 }}
-        role="status"
-        aria-live="polite"
-        className="pointer-events-none fixed left-1/2 top-6 z-50 -translate-x-1/2"
-      >
-        {toastOpen && (
-          <div className="pointer-events-auto rounded-md bg-white/90 text-black shadow-lg backdrop-blur px-4 py-3 text-sm">
-            <div className="font-medium">Message {loading ? "…" : "sent"} 🎉</div>
-            <div className="opacity-80">{toastDesc}</div>
-          </div>
-        )}
-      </motion.div>
-
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* CONTACT HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.6 } }}
-          className="text-center mb-12 xl:mb-16"
+          animate={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.6 } }}
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl xl:text-5xl font-bold mb-4">
-            Get in <span className="text-accent">Touch</span>
+          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4">
+            Let's Work <span className="text-accent">Together</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Have a project, idea, or collaboration in mind? Share a few details below — I typically reply within 24 hours.
+          <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg">
+            Have a project in mind or just want to chat? I'm always open to discussing new opportunities,
+            creative ideas, or partnerships. Reach out and let's create something amazing together!
           </p>
         </motion.div>
 
-        <div className="flex flex-col xl:flex-row gap-[30px]">
-          {/* LEFT: FORM */}
-          <div className="w-full xl:flex-1 order-2 xl:order-none">
-            <div className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl">
-              <h3 className="text-4xl text-accent">Let&apos;s work together</h3>
-              <p className="text-white/60">
-                Tell me a bit about your project and how I can help. I usually respond within 24 hours.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                {/* name + contact */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    type="text"
-                    name="firstName"
-                    placeholder="First name"
-                    autoComplete="given-name"
-                    required
-                    className="flex min-h-[48px] w-full rounded-md border border-white/10 bg-primary px-4 py-3 text-base text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <Input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last name"
-                    autoComplete="family-name"
-                    required
-                    className="flex min-h-[48px] w-full rounded-md border border-white/10 bg-primary px-4 py-3 text-base text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Email address"
-                    autoComplete="email"
-                    required
-                    className="flex min-h-[48px] w-full rounded-md border border-white/10 bg-primary px-4 py-3 text-base text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <Input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone number"
-                    autoComplete="tel"
-                    pattern="[\d\s()+-]{7,}"
-                    /* basic safe pattern */
-                    className="flex min-h-[48px] w-full rounded-md border border-white/10 bg-primary px-4 py-3 text-base text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                </div>
-
-                {/* service select */}
-                <div className="space-y-2">
-                  <label className="text-sm text-white/70" htmlFor="service">
-                    Service
-                  </label>
-                  <Select value={service} onValueChange={setService}>
-                    <SelectTrigger
-                      id="service"
-                      className="flex min-h-[48px] w-full items-center justify-between rounded-md border border-white/10 bg-primary px-4 py-3 text-base text-white/80 focus:border-accent outline-none"
-                    >
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Select a service</SelectLabel>
-                        <SelectItem
-                          value="web-dev"
-                          className="data-[highlighted]:bg-accent data-[highlighted]:text-black"
-                        >
-                          Web Development
-                        </SelectItem>
-                        <SelectItem
-                          value="ui-ux"
-                          className="data-[highlighted]:bg-accent data-[highlighted]:text-black"
-                        >
-                          UI/UX Design
-                        </SelectItem>
-                        <SelectItem
-                          value="logo"
-                          className="data-[highlighted]:bg-accent data-[highlighted]:text-black"
-                        >
-                          Logo Design
-                        </SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  {/* Hidden input so it posts with FormData */}
-                  <input type="hidden" name="service" value={service} />
-                </div>
-
-                {/* message */}
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm text-white/70">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Type your message here..."
-                    required
-                    className="min-h-[160px] rounded-md border border-white/10 bg-primary px-4 py-3 text-base text-white placeholder:text-white/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="mt-2 w-fit rounded-md bg-accent px-5 py-3 text-sm font-medium text-black hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+        {/* CONTACT CONTENT */}
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.6 } }}
+            className="bg-[#27272c] rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl"
+          >
+            {/* Contact Info Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
+              {contactInfo.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0, transition: { delay: 0.5 + index * 0.1, duration: 0.5 } }}
+                  className="flex flex-col items-center text-center group"
                 >
-                  {loading ? "Sending…" : "Send message"}
-                </Button>
-              </form>
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary text-accent rounded-full flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-primary transition-all duration-300 border border-accent/20 group-hover:border-accent">
+                    <div className="text-2xl sm:text-3xl">{item.icon}</div>
+                  </div>
+                  <h3 className="text-white font-semibold mb-2 text-lg">{item.title}</h3>
+                  {item.link ? (
+                    <a 
+                      href={item.link}
+                      className="text-white/60 hover:text-accent transition-colors text-sm sm:text-base"
+                    >
+                      {item.description}
+                    </a>
+                  ) : (
+                    <p className="text-white/60 text-sm sm:text-base">{item.description}</p>
+                  )}
+                </motion.div>
+              ))}
             </div>
-          </div>
 
-          {/* RIGHT: CONTACT INFO */}
-          <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
-            <ul className="flex flex-col gap-10">{InfoList}</ul>
-          </div>
+            {/* Divider */}
+            <div className="border-t border-white/10 mb-10 sm:mb-12"></div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.8, duration: 0.6 } }}
+              className="text-center"
+            >
+              <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8">Connect With Me</h3>
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1, transition: { delay: 0.9 + index * 0.1, duration: 0.4 } }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`w-14 h-14 sm:w-16 sm:h-16 bg-primary border border-accent/20 rounded-full flex items-center justify-center text-accent text-2xl sm:text-3xl transition-all duration-300 ${social.color} hover:border-transparent hover:text-white`}
+                    aria-label={social.name}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { delay: 1.2, duration: 0.6 } }}
+              className="mt-10 sm:mt-12 text-center"
+            >
+              <a
+                href="https://wa.me/2348139958224"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent/90 text-white rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-accent/50"
+              >
+                <FaWhatsapp className="text-2xl" />
+                <span>Let's Chat on WhatsApp</span>
+              </a>
+              <p className="mt-4 text-white/40 text-sm">Available Monday - Friday, 9AM - 6PM WAT</p>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </motion.section>

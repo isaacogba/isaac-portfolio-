@@ -20,8 +20,43 @@ import Image from "next/image";
 
 // ==================== PROJECTS DATA ====================
 const projects = [
+
   {
     num: "01",
+    category: "Full-stack",
+    title: "full-stack E-Commerce",
+    description:
+      "A clean, responsive ecommerce interface focused on UI and performance.",
+    stacks: [{ name: "React" }, { name: "Tailwind CSS" }, { name: "Next.js 15" }],
+    image: "/work3.png",
+    live: "https://vogues.vercel.app/",
+    github: "#",
+  },
+  
+  {
+    num: "02",
+    category: "Full-stack",
+    title: "Portfolio v2",
+    description:
+      "A beautiful animated portfolio using Framer Motion + Next.js.",
+    stacks: [{ name: "Next.js" }, { name: "Tailwind CSS" }, { name: "Node.js" }],
+    image: "/work2.png",
+    live: "",
+    github: "#",
+  },
+  {
+    num: "04",
+    category: "Full-stack",
+    title: "Car-Rental",
+    description:
+      "Full Car-Rental   Business  ( checkout) with auth and payments.",
+    stacks: [{ name: "Next.js" }, { name: "Tailwind CSS" }, { name: "Node.js" }],
+    image: "/work4.png",
+    live: "https://rentroo.vercel.app",
+    github: "#",
+  },
+  {
+    num: "03",
     category: "Full-stack",
     title: "Temu Clone",
     description:
@@ -38,28 +73,7 @@ const projects = [
     live: "#",
     github: "#",
   },
-  {
-    num: "02",
-    category: "Full-stack",
-    title: "Portfolio v2",
-    description:
-      "A beautiful animated portfolio using Framer Motion + Next.js.",
-    stacks: [{ name: "Next.js" }, { name: "Tailwind CSS" }, { name: "Node.js" }],
-    image: "/work2.png",
-    live: "#",
-    github: "#",
-  },
-  {
-    num: "03",
-    category: "Front End",
-    title: "E-Commerce UI",
-    description:
-      "A clean, responsive ecommerce interface focused on UI and performance.",
-    stacks: [{ name: "React" }, { name: "Tailwind CSS" }, { name: "Next.js 15" }],
-    image: "/work1.png",
-    live: "#",
-    github: "#",
-  },
+  
 ];
 
 // ==================== COMPONENT ====================
