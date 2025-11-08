@@ -77,9 +77,9 @@ export default function Work() {
       id="work"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen flex flex-col justify-center py-12 xl:px-0 scroll-mt-24"
+      className="min-h-screen flex flex-col justify-center py-12 sm:py-16 xl:px-0 scroll-mt-24"
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6">
 
         {/* ====================
             WORK HEADER
@@ -91,12 +91,12 @@ export default function Work() {
             y: 0,
             transition: { delay: 0.2, duration: 0.6 },
           }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl xl:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4">
             My <span className="text-accent">Work</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+          <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-0">
             Selected builds that blend performance, clean UX, and modern tooling.
             Browse the highlights, peek the code, and open the live demos.
           </p>
@@ -105,20 +105,20 @@ export default function Work() {
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
           {/* LEFT: TEXT DETAILS */}
           <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
-            <div className="flex flex-col gap-[30px] h-[50%]">
-              <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
+            <div className="flex flex-col gap-[20px] sm:gap-[30px] h-[50%]">
+              <div className="text-6xl sm:text-7xl xl:text-8xl leading-none font-extrabold text-transparent text-outline">
                 {project.num}
               </div>
 
-              <h2 className="text-[42px] font-bold leading-none text-white capitalize">
+              <h2 className="text-3xl sm:text-[36px] xl:text-[42px] font-bold leading-none text-white capitalize">
                 {project.category} Project
               </h2>
 
-              <p className="text-white/60">{project.description}</p>
+              <p className="text-sm sm:text-base text-white/60">{project.description}</p>
 
               <ul className="flex flex-wrap gap-2">
                 {project.stacks.map((item, index) => (
-                  <li key={index} className="text-xl text-accent">
+                  <li key={index} className="text-lg sm:text-xl text-accent">
                     {item.name}
                     {index !== project.stacks.length - 1 ? "," : ""}
                   </li>
@@ -137,9 +137,9 @@ export default function Work() {
                         target="_blank"
                         rel="noreferrer"
                         aria-label={`Open live link for ${project.title}`}
-                        className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10"
+                        className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10"
                       >
-                        <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                        <BsArrowUpRight className="text-white text-2xl sm:text-3xl group-hover:text-accent" />
                       </Link>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -154,9 +154,9 @@ export default function Work() {
                         target="_blank"
                         rel="noreferrer"
                         aria-label={`Open GitHub repo for ${project.title}`}
-                        className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10"
+                        className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10"
                       >
-                        <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                        <BsGithub className="text-white text-2xl sm:text-3xl group-hover:text-accent" />
                       </Link>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -169,7 +169,7 @@ export default function Work() {
           </div>
 
           {/* RIGHT: SLIDER */}
-          <div className="w-full xl:w-[50%]">
+          <div className="w-full xl:w-[50%] mb-8 xl:mb-0">
             <Swiper
               spaceBetween={30}
               slidesPerView={1}

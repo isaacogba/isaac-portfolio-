@@ -24,7 +24,7 @@ const Photo = () => {
             opacity: 1,
             transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" },
           }}
-          className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten absolute rounded-full overflow-hidden"
+          className="w-[250px] h-[250px] sm:w-[298px] sm:h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten absolute rounded-full overflow-hidden"
         >
           {/* The image component already fills its parent, so it will be cropped by the parent's rounded-full class */}
           <Image
@@ -45,7 +45,7 @@ const Photo = () => {
           - SVG container size: 506px (xl) -> This difference will make the circle stroke slightly larger than the image. This is usually the desired effect.
         */}
         <motion.svg
-          className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px]"
+          className="w-[256px] sm:w-[300px] xl:w-[506px] h-[256px] sm:h-[300px] xl:h-[506px]"
           fill="transparent"
           viewBox="0 0 506 506"
           xmlns="http://www.w3.org/2000/svg"

@@ -38,18 +38,18 @@ const services = [
 const Service = () => {
   return (
     // Make this the scroll target for the nav
-    <section id="service" className="min-h-screen w-full scroll-mt-24">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="service" className="min-h-screen w-full scroll-mt-24 py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.6 } }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl xl:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4">
             My <span className="text-accent">Services</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+          <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-0">
             I offer a range of services to help bring your ideas to life and boost your online presence.
           </p>
         </motion.div>
@@ -61,16 +61,16 @@ const Service = () => {
             opacity: 1,
             transition: { delay: 0.6, duration: 0.6, ease: "easeOut" },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-14 xl:gap-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 xl:gap-16"
         >
           {services.map((service) => (
             <div
               key={service.num}
-              className="group flex flex-col gap-5 border border-white/10 p-8 rounded-2xl bg-gradient-to-br from-white/5 to-transparent hover:from-accent/10 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-accent/20"
+              className="group flex flex-col gap-4 sm:gap-5 border border-white/10 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-white/5 to-transparent hover:from-accent/10 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-accent/20"
             >
               {/* Top Row */}
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-4xl font-extrabold text-white/30 group-hover:text-accent transition-all duration-500">
+              <div className="flex justify-between items-center mb-1 sm:mb-2">
+                <span className="text-3xl sm:text-4xl font-extrabold text-white/30 group-hover:text-accent transition-all duration-500">
                   {service.num}
                 </span>
 
@@ -80,7 +80,7 @@ const Service = () => {
                   smooth={true}
                   duration={500}
                   offset={-80}         // adjust for fixed header height
-                  className="w-[55px] h-[55px] rounded-full bg-accent flex justify-center items-center text-primary text-2xl transition-transform duration-500 group-hover:rotate-[-45deg] shadow-md cursor-pointer"
+                  className="w-[50px] h-[50px] sm:w-[55px] sm:h-[55px] rounded-full bg-accent flex justify-center items-center text-primary text-xl sm:text-2xl transition-transform duration-500 group-hover:rotate-[-45deg] shadow-md cursor-pointer"
                   aria-label={`Learn more about ${service.title}`}
                 >
                   <BsArrowDownRight />
@@ -88,12 +88,12 @@ const Service = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl xl:text-3xl font-bold group-hover:text-accent transition-colors duration-300">
+              <h3 className="text-xl sm:text-2xl xl:text-3xl font-bold group-hover:text-accent transition-colors duration-300">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-white/70 text-base leading-relaxed">
+              <p className="text-white/70 text-sm sm:text-base leading-relaxed">
                 {service.description}
               </p>
             </div>

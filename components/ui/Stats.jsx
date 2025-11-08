@@ -25,14 +25,14 @@ const Stats = () => {
 
   return (
     <section ref={ref} >
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
           {stats.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center space-y-2"
+              className="flex flex-col items-center justify-center space-y-1 sm:space-y-2"
             >
-              <h3 className="text-4xl xl:text-6xl font-extrabold text-accent">
+              <h3 className="text-3xl sm:text-4xl xl:text-6xl font-extrabold text-accent">
                 {startCount ? (
                   <CountUp end={item.num} duration={2.5} />
                 ) : (
@@ -40,7 +40,7 @@ const Stats = () => {
                 )}
                 +
               </h3>
-              <p className="text-sm md:text-base text-white/70 font-medium max-w-[120px]">
+              <p className="text-xs sm:text-sm md:text-base text-white/70 font-medium max-w-[100px] sm:max-w-[120px]">
                 {item.text}
               </p>
             </div>
