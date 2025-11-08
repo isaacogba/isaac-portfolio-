@@ -7,6 +7,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CiMenuFries } from "react-icons/ci";
+import { FaWhatsapp } from "react-icons/fa";
 
 const links = [
   { name: "home",    hash: "#home" },
@@ -69,6 +70,18 @@ export default function MobileNav() {
               {l.name}
             </button>
           ))}
+          
+          {/* WhatsApp Button */}
+          <a
+            href="https://wa.me/2348139958224"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center gap-3 px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg transition-all duration-300 font-medium text-lg w-full justify-center"
+            onClick={() => setOpen(false)}
+          >
+            <FaWhatsapp className="text-2xl" />
+            <span>WhatsApp Me</span>
+          </a>
         </nav>
       </SheetContent>
     </Sheet>

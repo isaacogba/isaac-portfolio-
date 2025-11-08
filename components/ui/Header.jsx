@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import MobileNav from "./MobileNav";
 import Nav from "./Nav";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Header = () => {
   return (
@@ -16,10 +17,17 @@ const Header = () => {
         </Link>
 
         {/* Desktop Nav & WhatsApp button (visible ≥ md) */}
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-5">
           <Nav />
-          <a href="https://wa.me/2348139958224" target="_blank" rel="noopener noreferrer" aria-label="Contact on WhatsApp">
-            <Button className="uppercase">WhatsApp</Button>
+          <a 
+            href="https://wa.me/2348139958224" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Contact on WhatsApp"
+            className="flex items-center gap-2 px-4 py-2 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-lg transition-all duration-300 font-medium"
+          >
+            <FaWhatsapp className="text-xl" />
+            <span className="hidden lg:inline">WhatsApp</span>
           </a>
         </div>
 
