@@ -53,7 +53,7 @@ export default function Page() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 sm:gap-6">
-                <a href="/Isaac_Ogba_CV.pdf" download className="inline-block w-full sm:w-auto">
+                {/* <a href="/Isaac_Ogba_CV.pdf" download className="inline-block w-full sm:w-auto">
                   <Button
                     variant="outline"
                     size="lg"
@@ -62,7 +62,7 @@ export default function Page() {
                     <span>Download CV</span>
                     <FiDownload className="text-xl" />
                   </Button>
-                </a>
+                </a> */}
 
                 <Social
                   containerStyles="flex gap-4 sm:gap-6 justify-center"
